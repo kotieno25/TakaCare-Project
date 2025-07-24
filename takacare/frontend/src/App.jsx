@@ -1,0 +1,20 @@
+import Navbar from "./components/Navbar";
+
+function App() {
+  return (
+    <div className="min-h-screen bg-green-50">
+      <Navbar />
+      <main className="flex flex-col items-center justify-center mt-20 px-6 text-center">
+        <h1 className="text-5xl md:text-6xl font-bold text-green-800 mb-4">
+          Clean Nairobi, Smartly.
+        </h1>
+        <p className="text-gray-700 max-w-xl">
+          TakaCare connects households, institutions, and businesses with verified
+          waste collectors. Real-time pickup. Transparent billing. Cleaner city.
+        </p>
+      </main>
+    </div>
+  );
+}
+
+export default App;
