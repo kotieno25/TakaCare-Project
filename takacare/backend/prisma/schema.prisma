@@ -28,3 +28,9 @@ model PickupRequest {
   location  String
   createdAt DateTime @default(now())
 }
+
+model Collector {
+  id   Int    @id @default(autoincrement())
+  name String
+  // Add more fields as needed
+}

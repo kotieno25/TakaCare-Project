@@ -65,4 +65,6 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { signup, login };
+// TODO: Implement MongoDB/Mongoose-based user authentication here.
+// The previous Prisma-based logic has been removed.
+module.exports = { signup: (req, res) => res.status(501).json({ msg: 'Signup not implemented' }), login: (req, res) => res.status(501).json({ msg: 'Login not implemented' }) };

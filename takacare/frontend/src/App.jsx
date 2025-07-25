@@ -5,6 +5,7 @@ import CollectorSignup from "./components/CollectorSignup";
 import Benefits from "./components/Benefits";
 import ClientReviews from "./components/ClientReviews";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
