@@ -1,24 +1,24 @@
-// backend/routes/collector.js
+// backend/routes/collectors.js
 const express = require("express");
 const router = express.Router();
-const sendConfirmationEmail = require("../utils/mailer");
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
+// POST /api/collectors
 router.post("/", async (req, res) => {
-  const { name, email, phone, location } = req.body;
-
-  if (!name || !email || !phone || !location) {
-    return res.status(400).json({ message: "All fields are required" });
-  }
+  const { name } = req.body;
+  if (!name) return res.status(400).json({ error: "Name required." });
 
   try {
-    await sendConfirmationEmail(
-      email,
-      "Welcome to TakaCare",
-      `Hi ${name},\n\nThanks for signing up to be a collector in ${location}. We’ll contact you after verification.\n\nCheers,\nTakaCare Team`
-    );
-    res.status(200).json({ message: "Collector signup received" });
+    const collector = await prisma.collector.create({
+      data: {
+        name,
+      },
+    });
+    res.status(201).json({ message: "Collector registered.", collector });
   } catch (err) {
-    res.status(500).json({ message: "Email failed", error: err.message });
+    console.error(err);
+    res.status(500).json({ error: "Server error." });
   }
 });
 

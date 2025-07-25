@@ -1,4 +1,12 @@
-import Navbar from "./components/Navbar";
+import React from "react";
+import Hero from "./components/Hero";
+import RequestPickup from "./components/RequestPickup";
+import CollectorSignup from "./components/CollectorSignup";
+import Benefits from "./components/Benefits";
+import ClientReviews from "./components/ClientReviews";
+import Footer from "./components/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -13,6 +21,16 @@ function App() {
           waste collectors. Real-time pickup. Transparent billing. Cleaner city.
         </p>
       </main>
+      <>
+      {/* Existing sections */}
+      <Hero />
+      <RequestPickup />
+      <CollectorSignup />
+      <Benefits />
+      <ClientReviews />
+      <Footer />
+      <ToastContainer />
+    </>
     </div>
   );
 }

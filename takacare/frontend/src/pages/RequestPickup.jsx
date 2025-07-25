@@ -44,6 +44,7 @@ export default function RequestPickup() {
           <option value="plastic">Plastic</option>
           <option value="organic">Organic</option>
           <option value="e-waste">E-Waste</option>
+          <option value="All">All</option>
         </select>
         <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Submit</button>
       </form>

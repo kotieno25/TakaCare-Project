@@ -1,24 +1,24 @@
 // backend/routes/pickup.js
 const express = require("express");
 const router = express.Router();
-const sendConfirmationEmail = require("../utils/mailer");
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
+// POST /api/pickup
 router.post("/", async (req, res) => {
-  const { name, address, email, wasteType } = req.body;
-
-  if (!name || !address || !email || !wasteType) {
-    return res.status(400).json({ message: "All fields are required" });
-  }
+  const { location } = req.body;
+  if (!location) return res.status(400).json({ error: "Location required." });
 
   try {
-    await sendConfirmationEmail(
-      email,
-      "Pickup Request Received",
-      `Hi ${name},\n\nYour pickup for ${wasteType} at ${address} has been received. We'll be in touch shortly.\n\nThank you for using TakaCare!`
-    );
-    res.status(200).json({ message: "Pickup request submitted" });
+    const pickup = await prisma.pickup.create({
+      data: {
+        location,
+      },
+    });
+    res.status(201).json({ message: "Pickup request saved.", pickup });
   } catch (err) {
-    res.status(500).json({ message: "Email failed", error: err.message });
+    console.error(err);
+    res.status(500).json({ error: "Server error." });
   }
 });
 
